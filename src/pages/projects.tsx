@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ProjectCard } from '../components/projects/project-card';
 
-// Ces données devraient idéalement venir d'une API ou d'un CMS
 const projects = [
   {
     id: '1',
@@ -10,8 +9,8 @@ const projects = [
     description: 'Application mobile de commerce électronique avec Flutter et Firebase, offrant une expérience utilisateur fluide et moderne.',
     image: '/projects/ecommerce.jpg',
     technologies: ['Flutter', 'Firebase', 'Stripe'],
-    demoLink: 'https://demo.com',
-    githubLink: 'https://github.com',
+    demo: 'https://demo.com',
+    github: 'https://github.com',
     category: 'Mobile',
     featured: true,
   },
@@ -21,12 +20,11 @@ const projects = [
     description: 'Site web portfolio moderne construit avec React et TailwindCSS, mettant en valeur mes projets et compétences.',
     image: '/projects/portfolio.jpg',
     technologies: ['React', 'TypeScript', 'TailwindCSS'],
-    demoLink: 'https://demo.com',
-    githubLink: 'https://github.com',
+    demo: 'https://demo.com',
+    github: 'https://github.com',
     category: 'Web',
     featured: true,
   },
-  // Ajoutez plus de projets ici
 ];
 
 const categories = ['Tous', 'Web', 'Mobile', 'Desktop'];
@@ -70,7 +68,7 @@ export const ProjectsPage = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <ProjectCard
               key={project.id}

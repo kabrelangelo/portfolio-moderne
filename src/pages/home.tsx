@@ -1,37 +1,42 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Image } from '@/components/image';
 import { Skills } from '../components/skills';
 import { ContactForm } from '../components/contact-form';
-import { defaultImages } from '../assets/images';
+import { Hero } from '@/components/hero';
+import { Image } from '@/components/image';
+import { Projects } from '@/components/projects';
 
-const projects = [
+const testimonials = [
   {
-    id: '1',
-    title: 'E-commerce Mobile App',
-    description: 'Application mobile de commerce électronique avec Flutter et Firebase.',
-    image: '/projects/ecommerce.jpg',
-    technologies: ['Flutter', 'Firebase', 'Stripe'],
-    demoLink: 'https://demo.com',
-    githubLink: 'https://github.com',
+    name: "Sophie Martin",
+    role: "Directeur, Prentisoft",
+    content: "Un développeur exceptionnel qui a su transformer notre vision en réalité. Son professionnalisme est remarquable.",
   },
   {
-    id: '2',
-    title: 'Portfolio Personnel',
-    description: 'Site web portfolio moderne construit avec React et TailwindCSS.',
-    image: '/projects/portfolio.jpg',
-    technologies: ['React', 'TypeScript', 'TailwindCSS'],
-    demoLink: 'https://demo.com',
-    githubLink: 'https://github.com',
+    name: "Abba Sali",
+    role: "Développeur, Freelance",
+    content: "Excellente collaboration sur notre projet d'application mobile. Les délais ont été respectés et la communication était parfaite.",
   },
   {
-    id: '3',
-    title: 'Application de Gestion',
-    description: 'Application web de gestion des tâches et des projets.',
-    image: '/projects/gestion.jpg',
-    technologies: ['React', 'Node.js', 'MongoDB'],
-    demoLink: 'https://demo.com',
-    githubLink: 'https://github.com',
+    name: "Paul Mana",
+    role: "Fondateur, Nodexia Labs",
+    content: "Un vrai professionnel qui comprend les besoins business. Le résultat final a dépassé nos attentes.",
+  },]
+const stats = [
+  {
+    label: 'Projets réalisés',
+    value: '20+',
+  },
+  {
+    label: 'Années d\'expérience',
+    value: '5+',
+  },
+  {
+    label: 'Clients satisfaits',
+    value: '100%',
+  },
+  {
+    label: 'Lignes de code écrites',
+    value: '100k+',
   },
 ];
 
@@ -53,289 +58,21 @@ const services = [
   },
 ];
 
-const testimonials = [
-  {
-    name: 'Roosvelt',
-    role: 'CEO de XYZ Inc.',
-    content: 'Je suis très satisfait du travail effectué par Kenne. Il est très professionnel et sa qualité de travail est exceptionnelle.',
-    // avatar: 'https://picsum.photos/200/300',
-  },
-  {
-    name: 'Jane Doe',
-    role: 'CTO de ABC Inc.',
-    content: 'Kabrel Kenne est un développeur très talentueux. Il a su répondre à nos besoins et nous a fourni une solution de haute qualité.',
-    // avatar: 'https://picsum.photos/200/301',
-  },
-  {
-    name: 'Bob Smith',
-    role: 'Directeur de projet chez DEF Inc.',
-    content: 'Je recommande vivement Kabrel pour tout projet de développement. Il est très réactif et sa communication est excellente.',
-    // avatar: 'https://picsum.photos/200/302',
-  },
-];
-
-const stats = [
-  {
-    label: 'Projets réalisés',
-    value: '20+',
-  },
-  {
-    label: 'Années d\'expérience',
-    value: '5+',
-  },
-  {
-    label: 'Clients satisfaits',
-    value: '100%',
-  },
-  {
-    label: 'Lignes de code écrites',
-    value: '100k+',
-  },
-];
 
 export const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative min-h-screen flex items-center pt-20">
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            initial={{ scale: 1.2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={defaultImages.hero}
-              alt="Hero Background"
-              className="w-full h-full object-cover"
-              fallbackType="hero"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
-          </motion.div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="flex-1 text-center md:text-left"
-            >
-              <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                Développeur <span className="gradient-text">Full-Stack</span>
-              </h1>
-              <p className="text-xl text-gray-500 text-muted-foreground mb-8 max-w-xl">
-                Je crée des applications web et mobiles modernes, performantes et intuitives.
-                Transformons ensemble vos idées en réalité digitale.
-              </p>
-              <div className="flex gap-4 justify-center md:justify-start">
-                <motion.a
-                  href="#contact"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
-                >
-                  Me Contacter
-                </motion.a>
-                <motion.a
-                  href="#projects"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/90 transition-colors"
-                >
-                  Voir mes Projets
-                </motion.a>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="flex-1 relative"
-            >
-              <div className="relative w-[400px] h-[500px] mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-secondary/20 rounded-[60px] blur-3xl animate-pulse" />
-                <Image
-                  src={defaultImages.profile}
-                  alt="Profile"
-                  className="w-full h-full object-cover rounded-[30px] border-4 border-primary shadow-2xl"
-                  fallbackType="profile"
-                />
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{
-                    delay: 1,
-                    duration: 0.5,
-                    repeat: Infinity,
-                    repeatType: "reverse"
-                  }}
-                  className="absolute -bottom-10 -right-10 w-32 h-32 bg-accent rounded-full flex items-center justify-center text-4xl font-bold shadow-lg"
-                >
-                  <span className="gradient-text">5+</span>
-                  <span className="text-sm ml-1">ans</span>
-                </motion.div>
-              </div>
-              
-              {/* Floating Elements */}
-              <motion.div
-                animate={{
-                  y: [0, -20, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }}
-                className="absolute -top-10 -left-10 w-20 h-20 bg-primary/20 rounded-full backdrop-blur-xl"
-              />
-              <motion.div
-                animate={{
-                  y: [0, 20, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }}
-                className="absolute -bottom-5 left-10 w-16 h-16 bg-secondary/20 rounded-full backdrop-blur-xl"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
+     <Hero/>
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl font-bold mb-4">Mes Compétences</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Un aperçu des technologies que je maîtrise et utilise quotidiennement
-              dans mes projets.
-            </p>
-          </motion.div>
-          
-          <Skills />
-        </div>
+        <Skills/> 
       </section>
 
       {/* Projects Section */}
       <section id="projects" className="py-20 bg-accent/5">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl font-bold mb-4">Projets Récents</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Découvrez mes dernières réalisations en développement web et mobile.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="group relative bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
-              >
-                <div className="aspect-[4/3] relative overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    fallbackType="project"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <div className="absolute inset-0 flex items-center justify-center p-4">
-                      <div className="flex gap-4">
-                        {project.demoLink && (
-                          <motion.a
-                            href={project.demoLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-6 py-2 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            Voir la démo
-                          </motion.a>
-                        )}
-                        {project.githubLink && (
-                          <motion.a
-                            href={project.githubLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-6 py-2 rounded-lg bg-white text-primary font-medium hover:bg-white/90 transition-colors"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            Code source
-                          </motion.a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 transition-colors group"
-            >
-              <span>Voir tous les projets</span>
-              <svg
-                className="w-5 h-5 transition-transform group-hover:translate-x-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Projects/>
+        </section>
 
       {/* Services Section */}
       <section id="services" className="py-20 bg-background">
