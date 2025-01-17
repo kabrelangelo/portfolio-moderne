@@ -21,11 +21,11 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    title: 'Application Mobile',
-    description: 'Application mobile cross-platform avec synchronisation temps réel',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=450&fit=crop',
-    technologies: ['React Native', 'TypeScript', 'Firebase'],
-    demo: 'https://example.com',
+    title: 'Site vitrine',
+    description: 'Site web moderne et élégant de la jeune entreprise Prentisoft',
+    image: '/images/prentisoft.PNG',
+    technologies: ['WordPress', 'HTML', 'CSS', 'JavaScript'],
+    demo: 'https://prentisoft.com/',
     github: 'https://github.com',
   },
 ];

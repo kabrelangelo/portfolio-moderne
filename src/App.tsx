@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
+import { ThemeProvider } from './components/theme-provider';
 import './styles/theme.css';
 
 const HomePage = lazy(() => import('./pages/home').then(module => ({ default: module.HomePage })));
@@ -12,6 +13,7 @@ const ProjectsPage = lazy(() => import('./pages/projects').then(module => ({ def
 
 function App() {
   return (
+    <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
       <Router>
         <div className="min-h-screen bg-background text-foreground antialiased transition-colors">
           <Navbar />
@@ -29,6 +31,7 @@ function App() {
           <Footer />
         </div>
       </Router>
+    </ThemeProvider>
   );
 }
 

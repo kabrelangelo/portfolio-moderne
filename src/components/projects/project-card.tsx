@@ -18,7 +18,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <img
             src={project.image}
             alt={project.title}
-            className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+            className="object-fill w-full h-full transform group-hover:scale-105 transition-transform duration-300"
           />
         </div>
         <div className="p-6">
