@@ -64,7 +64,11 @@ export function Hero() {
               className="flex-1 relative"
             >
               <div className="relative w-[500px] h-[500px] mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-secondary/20 rounded-[60px] blur-3xl animate-pulse" />
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-primary/20 to-secondary/20 rounded-[60px] blur-3xl"
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
                 <Image
                   src={defaultImages.profile}
                   alt="Profile"

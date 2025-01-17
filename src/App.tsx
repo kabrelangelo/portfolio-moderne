@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HomePage } from './pages/home';
-import { ServicesPage } from './pages/services';
-import { BlogPage } from './pages/blog';
-import { TestimonialsPage } from './pages/testimonials';
-import { ProjectsPage } from './pages/projects';
+import React, { lazy, Suspense } from 'react';
+const HomePage = lazy(() => import('./pages/home').then(module => ({ default: module.HomePage })));
+const ServicesPage = lazy(() => import('./pages/services').then(module => ({ default: module.ServicesPage })));
+const BlogPage = lazy(() => import('./pages/blog').then(module => ({ default: module.BlogPage })));
+const TestimonialsPage = lazy(() => import('./pages/testimonials').then(module => ({ default: module.TestimonialsPage })));
+const ProjectsPage = lazy(() => import('./pages/projects').then(module => ({ default: module.ProjectsPage })));
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
 import { ThemeProvider } from './components/theme-provider';
@@ -16,13 +17,15 @@ function App() {
         <div className="min-h-screen bg-background text-foreground antialiased transition-colors">
           <Navbar />
           <main>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/testimonials" element={<TestimonialsPage />} />
-            </Routes>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/testimonials" element={<TestimonialsPage />} />
+              </Routes>
+            </Suspense>
           </main>
           <Footer />
         </div>
