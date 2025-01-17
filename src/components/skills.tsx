@@ -48,8 +48,9 @@ export const Skills = () => {
             <motion.div
               key={category.category}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
               className="bg-card p-6 rounded-2xl shadow-lg"
             >
               <h3 className="text-xl font-bold mb-6 gradient-text">
@@ -66,13 +67,14 @@ export const Skills = () => {
                     </div>
                     <div className="h-2 bg-background rounded-full overflow-hidden">
                       <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${skill.level}%` }}
+                        initial={{ width: "0%" }}
+                        whileInView={{ width: `${skill.level}%` }}
                         transition={{
-                          delay: index * 0.1 + skillIndex * 0.1,
                           duration: 1,
+                          delay: index * 0.1 + skillIndex * 0.1,
                           ease: "easeOut"
                         }}
+                        viewport={{ once: true }}
                         className="h-full bg-gradient-to-r from-primary to-secondary"
                       />
                     </div>
