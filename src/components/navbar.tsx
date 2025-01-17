@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "./theme-provider";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -15,12 +12,12 @@ export const Navbar = () => {
     { path: "/", label: "Accueil" },
     { path: "/projects", label: "Projets" },
     { path: "/services", label: "Services" },
-    { path: "/blog", label: "Blog" },
+    // { path: "/blog", label: "Blog" },
     { path: "/testimonials", label: "Témoignages" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 mx-10 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="text-2xl font-bold gradient-text">
@@ -38,7 +35,7 @@ export const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-            <button
+            {/* <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
               aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
@@ -74,12 +71,12 @@ export const Navbar = () => {
                   />
                 </svg>
               )}
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-4">
-            <button
+          <div className="md:hidden">
+            {/* <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
               aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
@@ -115,7 +112,7 @@ export const Navbar = () => {
                   />
                 </svg>
               )}
-            </button>
+            </button> */}
             <button
               onClick={toggleMenu}
               className="text-foreground hover:text-primary transition-colors"
