@@ -3,10 +3,10 @@ import { Project } from './types';
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'E-commerce Modern',
-    description: 'Une plateforme e-commerce moderne avec panier et paiement intégré',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=450&fit=crop',
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Stripe'],
+    title: 'Site vitrine Moderne',
+    description: 'Site vitrine ultra moderne avec React et Tailwind CSS pour l\' entreprise Nodexia',
+    image: '/images/nodexia.PNG',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'framer-motion'],
     demo: 'https://example.com',
     github: 'https://github.com',
   },
