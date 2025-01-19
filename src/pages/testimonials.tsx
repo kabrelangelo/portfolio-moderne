@@ -2,43 +2,43 @@ import { motion } from 'framer-motion';
 
 const testimonials = [
   {
-    name: "Sophie Martin",
-    role: "CEO, TechStart",
+    name: "Abba Sali",
+    role: "Développeur, Freelance",
     content: "Un développeur exceptionnel qui a su transformer notre vision en réalité. La qualité du code et le professionnalisme sont remarquables.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887",
+    // image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887",
     project: {
-      name: "Application E-commerce",
-      // image: "https://images.unsplash.com/photo-1607082349566-187342175e2f?q=80&w=2070",
+      name: "API de E-commerce",
+      image: "/images/api.PNG",
     }
   },
   {
-    name: "Thomas Dubois",
-    role: "CTO, InnovateHub",
+    name: "Cyrille Kamgue",
+    role: "Directeur, Sigeris Sarl",
     content: "Excellente collaboration sur notre projet d'application mobile. Les délais ont été respectés et la communication était parfaite.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070",
+    // image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070",
     project: {
-      name: "Application Mobile Fitness",
-      image: "https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=2070",
+      name: "Application de Gestion Scolaire",
+      image: "/images/sigeris0.PNG",
     }
   },
   {
-    name: "Marie Laurent",
-    role: "Fondatrice, DesignCo",
+    name: "Rodrigue Nana",
+    role: "Fondateur, ALUCOBOND",
     content: "Un vrai professionnel qui comprend les besoins business. Le résultat final a dépassé nos attentes.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070",
+    // image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070",
     project: {
       name: "Site Web Vitrine",
-      image: "https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=2066",
+      image: "/images/nana.jfif",
     }
   },
   {
-    name: "Alexandre Petit",
-    role: "Product Manager, DataTech",
+    name: "Roosvelt Tchoffo",
+    role: "Grossiste",
     content: "La meilleure décision que nous ayons prise pour notre projet. L'expertise technique et les conseils stratégiques ont été précieux.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887",
+    // image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887",
     project: {
-      name: "Dashboard Analytics",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070",
+      name: "",
+     image: "/images/grossiste.jfif",
     }
   },
 ];
@@ -62,7 +62,7 @@ export const TestimonialsPage = () => {
           className="absolute inset-0"
         >
           <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070"
+            src="/images/testimonials.jpg"
             alt="Testimonials Hero"
             className="w-full h-full object-cover"
           />
@@ -149,11 +149,11 @@ export const TestimonialsPage = () => {
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-4 mb-6">
-                  <img
+                {/*   <img
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-16 h-16 rounded-full border-2 border-primary object-cover"
-                  />
+                  /> */}
                   <div>
                     <h3 className="font-bold text-lg">{testimonial.name}</h3>
                     <p className="text-muted-foreground">{testimonial.role}</p>
