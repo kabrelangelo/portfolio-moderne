@@ -1,12 +1,11 @@
 import { motion } from 'framer-motion';
 import { Image } from '../components/image';
-import { servicesImages } from '../assets/images';
 
 const services = [
   {
     title: "Développement Web",
     description: "Création de sites web et d'applications web modernes et performantes",
-    image: servicesImages.webDev,
+    image: "/images/web.webp",
     features: [
       "Sites web responsive",
       "Applications React/Next.js",
@@ -17,7 +16,7 @@ const services = [
   {
     title: "Développement Mobile",
     description: "Applications mobiles natives et cross-platform",
-    image: servicesImages.mobileDev,
+    image: "/images/mobile.webp",
     features: [
       "Applications iOS et Android",
       "Flutter/React Native",
@@ -28,7 +27,7 @@ const services = [
   {
     title: "Design UI/UX",
     description: "Création d'interfaces utilisateur modernes et intuitives",
-    image: servicesImages.design,
+    image: "/images/ui.webp",
     features: [
       "Design System",
       "Prototypage",
@@ -39,7 +38,7 @@ const services = [
   {
     title: "Conseil Technique",
     description: "Accompagnement et expertise technique pour vos projets",
-    image: servicesImages.consulting,
+    image: "/images/technique.jpeg",
     features: [
       "Architecture logicielle",
       "Choix technologiques",
@@ -60,12 +59,12 @@ export const ServicesPage = () => {
           transition={{ duration: 1.5 }}
           className="absolute inset-0"
         >
-          <Image
-            src={servicesImages.webDev}
+        {/*   <Image
+            src="/images/services.jpeg"
             alt="Services Hero"
             className="w-full h-full object-cover"
             fallbackType="service"
-          />
+          /> */}
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background" />
         </motion.div>
         <div className="absolute inset-0 flex items-center justify-center">
