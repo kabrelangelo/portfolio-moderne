@@ -35,11 +35,11 @@ export function Hero() {
               <h1 className="text-5xl m-6  md:text-7xl font-bold mb-6">
                 Développeur <span className="gradient-text">Full-Stack</span>
               </h1>
-              <p className="text-xl text-gray-500 font-normal text-muted-foreground mb-8 max-w-xl">
+              <p className="text-xl text-gray-500 font-normal m-6 text-muted-foreground mb-8 max-w-xl">
                 Je crée des applications web et mobiles modernes, performantes et intuitives.
                 Transformons ensemble vos idées en réalité digitale.
               </p>
-              <div className="flex gap-4 justify-center md:justify-start">
+              <div className="flex gap-4 m-6 justify-center md:justify-start">
                 <motion.a
                   href="#contact"
                   whileHover={{ scale: 1.05 }}

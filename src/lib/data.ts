@@ -12,12 +12,12 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    title: 'Site Web Knak construction',
-    description: 'Site web de l\' entreprise Knak construction avec WordPress',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop',
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', ''],
-    demo: 'https://example.com',
-    github: 'https://github.com',
+    title: 'Application Mobile de Gestion Scolaire',
+    description: 'Application mobile de gestion scolaire avec Flutter et CodeIgniter pour l\' entreprise SIGERIS SARL',
+    image: '/images/sigeris0.PNG',
+    technologies: ['Flutter', 'CodeIgniter', 'MySQL', 'PHP'],
+    demo: 'https://play.google.com/store/apps/details?id=cm.sigeris.sigerishs&hl=ln&pli=1',
+    github: '',
   },
   {
     id: 3,
@@ -26,6 +26,6 @@ export const projects: Project[] = [
     image: '/images/prentisoft.PNG',
     technologies: ['WordPress', 'HTML', 'CSS', 'JavaScript'],
     demo: 'https://prentisoft.com/',
-    github: 'https://github.com',
+    github: 'https://github.com/kabrelangelo',
   },
 ];
