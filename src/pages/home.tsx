@@ -4,10 +4,11 @@ import { ContactForm } from '../components/contact-form';
 import { Hero } from '@/components/hero';
 import { Image } from '@/components/image';
 import { Projects } from '@/components/projects';
+import { Link } from 'react-router-dom';
 
 const testimonials = [
   {
-    name: "Sophie Martin",
+    name: "Idriss Meli",
     role: "Directeur, Prentisoft",
     content: "Un développeur exceptionnel qui a su transformer notre vision en réalité. Son professionnalisme est remarquable.",
   },
@@ -18,7 +19,7 @@ const testimonials = [
   },
   {
     name: "Paul Mana",
-    role: "Fondateur, Nodexia Labs",
+    role: "Fondateur, Nodexia",
     content: "Un vrai professionnel qui comprend les besoins business. Le résultat final a dépassé nos attentes.",
   },]
 const stats = [
@@ -65,13 +66,24 @@ export const HomePage = () => {
       {/* Hero Section */}
      <Hero/>
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-background">
+      <section id="skills" className="py-10 bg-background">
         <Skills/> 
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-accent/5">
+      <section id="projects" className="pb-20 bg-accent/5">
       <Projects/>
+      <div className="flex justify-center items-center">
+        <Link to="/projects">
+  <motion.a
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="px-12 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+  >
+    Voir tous les Projets
+  </motion.a>
+  </Link>
+</div>
         </section>
 
       {/* Services Section */}

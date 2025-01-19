@@ -59,12 +59,12 @@ export const ServicesPage = () => {
           transition={{ duration: 1.5 }}
           className="absolute inset-0"
         >
-        {/*   <Image
-            src="/images/services.jpeg"
+          <Image
+            src="/images/testimonials.jpg"
             alt="Services Hero"
             className="w-full h-full object-cover"
             fallbackType="service"
-          /> */}
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background" />
         </motion.div>
         <div className="absolute inset-0 flex items-center justify-center">
@@ -104,7 +104,7 @@ export const ServicesPage = () => {
                   <Image
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-fit transition-transform duration-500 group-hover:scale-110"
                     fallbackType="service"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

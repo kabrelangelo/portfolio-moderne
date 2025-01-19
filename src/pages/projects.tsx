@@ -4,7 +4,7 @@ import { ProjectCard } from '../components/projects/project-card';
 
 const projects = [
   {
-    id: '1',
+    id: 1,
     title: 'E-commerce Mobile App',
     description: 'Application mobile de e-commerce avec Flutter et Firebase, offrant une expérience utilisateur fluide.',
     image: '/images/sigeris0.PNG',
@@ -15,7 +15,7 @@ const projects = [
     featured: true,
   },
   {
-    id: '2',
+    id: 2,
     title: 'Site vitrine Moderne',
     description: 'Site vitrine ultra moderne avec React et Tailwind CSS pour l\' entreprise Nodexia',
     image: '/images/nodexia.PNG',
@@ -51,19 +51,25 @@ export const ProjectsPage = () => {
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl font-bold mb-4">Mes Projets</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Découvrez une sélection de mes projets les plus récents et significatifs,
-            démontrant mes compétences en développement web et mobile.
-          </p>
-        </motion.div>
-
+    <div className='text-center my-8'>
+      <motion.h1
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="text-5xl md:text-7xl font-bold mb-6"
+            >
+              Mes <span className="gradient-text">Projets</span>
+            </motion.h1>
+            <motion.p
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="text-xl mb-16 text-muted-foreground max-w-2xl mx-auto"
+            >
+               Découvrez une sélection de mes projets les plus récents et significatifs,
+               démontrant mes compétences en développement web et mobile.
+            </motion.p>
+            </div>
         <div className="flex justify-center gap-4 mb-12">
           {categories.map((category) => (
             <button
@@ -85,7 +91,6 @@ export const ProjectsPage = () => {
             <ProjectCard
               key={project.id}
               project={project}
-              featured={project.featured}
             />
           ))}
         </div>

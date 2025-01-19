@@ -39,7 +39,7 @@ export function Hero() {
                 Je crée des applications web et mobiles modernes, performantes et intuitives.
                 Transformons ensemble vos idées en réalité digitale.
               </p>
-              <div className="flex gap-4 m-6 justify-center md:justify-start">
+              <div className="flex gap-4 md:m-6 justify-center md:justify-start">
                 <motion.a
                   href="#contact"
                   whileHover={{ scale: 1.05 }}
