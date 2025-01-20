@@ -48,6 +48,17 @@ const projects = [
     category: 'Web',
     featured: true,
   },
+  {
+    id: 5,
+    title: "Génération de QR Code",
+    description: "Site Web de génération de QR Code avec React et Tailwind CSS",
+    image: '/images/qcreate-code.PNG',
+    technologies: ['React', 'Tailwind CSS', 'JSX', 'qrcode.react'],
+    demo: 'https://qreate-code.vercel.app/',
+    github: 'https://github.com/kabrelangelo/qreate-code',
+    category: 'Web',
+    featured: true,
+  },
 ];
 
 const categories = ['Tous', 'Web', 'Mobile', 'Desktop'];
