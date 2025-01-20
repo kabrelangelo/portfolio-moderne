@@ -37,6 +37,17 @@ const projects = [
     category: 'Web',
     featured: true,
   },
+  {
+    id: 4,
+    title: 'Site Web de E-commerce',
+    description: "Site de E-commerce d'objets de luxe et de magnifiques vetements",
+    image: '/images/prentisoft.PNG',
+    technologies: ['WordPress', 'Woocommerce', 'HTML', 'JavaScript'],
+    demo: 'https://prentisoft.com/',
+    github: 'https://github.com/kabrelangelo',
+    category: 'Web',
+    featured: true,
+  },
 ];
 
 const categories = ['Tous', 'Web', 'Mobile', 'Desktop'];
