@@ -40,10 +40,10 @@ const projects = [
   {
     id: 4,
     title: 'Site Web de E-commerce',
-    description: "Site de E-commerce d'objets de luxe et de magnifiques vetements",
-    image: '/images/prentisoft.PNG',
+    description: "Site de E-commerce d'objets de luxe et de magnifiques vêtements",
+    image: '/images/boutique-fashion.PNG',
     technologies: ['WordPress', 'Woocommerce', 'HTML', 'JavaScript'],
-    demo: 'https://prentisoft.com/',
+    demo: 'https://blue-seahorse-987859.hostingersite.com/',
     github: 'https://github.com/kabrelangelo',
     category: 'Web',
     featured: true,
