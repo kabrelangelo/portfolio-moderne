@@ -22,7 +22,7 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* <Link to="/" className="text-2xl font-bold gradient-text"> */}
           <Link to="/">
-            <img src="/images/kabrel.png" className="h-28 w-auto" />
+            <img src="/images/kabrel.png" className="h-36 md:h-48 w-auto mt-6" />
           </Link>
 
           {/* Desktop Menu */}
