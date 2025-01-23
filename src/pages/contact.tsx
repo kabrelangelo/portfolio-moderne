@@ -1,3 +1,4 @@
+import { ContactForm } from '@/components/contact-form';
 import { motion } from 'framer-motion';
 import { 
     Mail, Phone, MapPin, Clock
@@ -26,7 +27,7 @@ const contactInfo = [
     {
       icon: Clock,
       title: 'Horaires',
-      details: ['Lun - Ven: 8h - 18h', 'Sam: 9h - 18h'],
+      details: ['Lun - Ven: 8h - 20h', 'Sam: 9h - 17h'],
       color: 'emerald'
     }
   ];
@@ -111,7 +112,13 @@ export default function Contact() {
           </motion.div>
         </div>
       </section>
-     
+      <div id="contact" className="py-20 bg-accent/5">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-1 lg:mx-24 gap-12 items-center">
+      <ContactForm/>
+     </div>
+     </div>
+        </div>
     </div>
   )
 }
