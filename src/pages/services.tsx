@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Image } from '../components/image';
+import { Link } from 'react-router-dom';
 
 const services = [
   {
@@ -149,14 +150,15 @@ export const ServicesPage = () => {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Discutons de votre projet et voyons comment je peux vous aider à le réaliser.
           </p>
+          <Link to={"/contact"}>
           <motion.a
-            href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-lg font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
           >
             Commencer un Projet
           </motion.a>
+          </Link>
         </motion.div>
       </div>
     </div>

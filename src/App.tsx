@@ -4,6 +4,7 @@ import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
 import { ThemeProvider } from './components/theme-provider';
 import './styles/theme.css';
+import Contact from './pages/contact';
 
 const HomePage = lazy(() => import('./pages/home').then(module => ({ default: module.HomePage })));
 const ServicesPage = lazy(() => import('./pages/services').then(module => ({ default: module.ServicesPage })));
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/projects" element={<ProjectsPage />} />
                 <Route path="/testimonials" element={<TestimonialsPage />} />
+                <Route path="/contact" element={<Contact />} />
               </Routes>
             </Suspense>
           </main>
