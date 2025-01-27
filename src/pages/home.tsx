@@ -1,12 +1,34 @@
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { Skills } from '../components/skills';
-import { ContactForm } from '../components/contact-form';
-import { Hero } from '@/components/hero';
-import { Image } from '@/components/image';
-import { Projects } from '@/components/projects';
 import { Link } from 'react-router-dom';
+import { Image } from '@/components/image';
 
-const testimonials = [
+// Lazy load components
+const Hero = lazy(() => import('@/components/hero').then(module => ({ default: module.Hero })));
+const Skills = lazy(() => import('../components/skills').then(module => ({ default: module.Skills })));
+const Projects = lazy(() => import('@/components/projects').then(module => ({ default: module.Projects })));
+const ContactForm = lazy(() => import('../components/contact-form').then(module => ({ default: module.ContactForm })));
+
+// Types
+interface Testimonial {
+  name: string;
+  role: string;
+  content: string;
+}
+
+interface Stat {
+  label: string;
+  value: string;
+}
+
+interface Service {
+  title: string;
+  description: string;
+  icon: JSX.Element;
+}
+
+// Memoized static data
+const testimonials: Testimonial[] = [
   {
     name: "Idriss Meli",
     role: "Directeur, Prentisoft",
@@ -21,8 +43,10 @@ const testimonials = [
     name: "Paul Mana",
     role: "Fondateur, Nodexia",
     content: "Un vrai professionnel qui comprend les besoins business. Le résultat final a dépassé nos attentes.",
-  },]
-const stats = [
+  },
+];
+
+const stats: Stat[] = [
   {
     label: 'Projets réalisés',
     value: '20+',
@@ -41,7 +65,7 @@ const stats = [
   },
 ];
 
-const services = [
+const services: Service[] = [
   {
     title: 'Développement Web',
     description: 'Création de sites web modernes et responsives',
@@ -59,20 +83,26 @@ const services = [
   },
 ];
 
-
 export const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-     <Hero/>
+      <Suspense fallback={<div className="h-screen flex items-center justify-center">Chargement...</div>}>
+        <Hero />
+      </Suspense>
+
       {/* Skills Section */}
       <section id="skills" className="py-10 bg-background">
-        <Skills/> 
+        <Suspense fallback={<div className="h-96 flex items-center justify-center">Chargement des compétences...</div>}>
+          <Skills />
+        </Suspense>
       </section>
 
       {/* Projects Section */}
       <section id="projects" className="pb-20 bg-accent/5">
-      <Projects/>
+        <Suspense fallback={<div className="h-96 flex items-center justify-center">Chargement des projets...</div>}>
+          <Projects />
+        </Suspense>
       <div className="flex justify-center items-center">
         <Link to="/projects">
   <motion.a
@@ -104,12 +134,8 @@ export const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <motion.div
+              <div
                 key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="p-6 rounded-2xl bg-card hover:shadow-lg transition-all"
               >
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -117,11 +143,12 @@ export const HomePage = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
                 <p className="text-muted-foreground">{service.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
+
 
       {/* Testimonials Section */}
       <section id="testimonials" className="py-20 bg-accent/5">
@@ -141,12 +168,8 @@ export const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <motion.div
+              <div
                 key={testimonial.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="p-6 rounded-2xl bg-card relative"
               >
                 <div className="absolute -top-4 left-6 w-8 h-8 bg-primary text-white flex items-center justify-center rounded-full">
@@ -166,7 +189,7 @@ export const HomePage = () => {
                     <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -194,16 +217,10 @@ export const HomePage = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-accent/5">
+      <div id="contact" className="py-20 bg-accent/5">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="max-w-xl"
-            >
+            <div className="max-w-xl">
               <h2 className="text-4xl font-bold mb-6">Contactez-moi</h2>
               <p className="text-muted-foreground mb-8">
                 Vous avez un projet en tête ? Je serais ravi d'en discuter avec vous
@@ -244,19 +261,15 @@ export const HomePage = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
+            <Suspense fallback={<div className="h-96 flex items-center justify-center">Chargement du formulaire...</div>}>
               <ContactForm />
-            </motion.div>
+            </Suspense>
+          </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    
   );
 };
