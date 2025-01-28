@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Image } from '@/components/image';
 
 // Lazy load components
-const Hero = lazy(() => import('@/components/hero').then(module => ({ default: module.Hero })));
+const Hero = lazy(() => import('../components/hero').then(module => ({ default: module.Hero })));
 const Skills = lazy(() => import('../components/skills').then(module => ({ default: module.Skills })));
 const Projects = lazy(() => import('@/components/projects').then(module => ({ default: module.Projects })));
 const ContactForm = lazy(() => import('../components/contact-form').then(module => ({ default: module.ContactForm })));
