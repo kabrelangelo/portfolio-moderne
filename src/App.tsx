@@ -3,9 +3,11 @@ import { lazy, Suspense } from 'react';
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
 import { ThemeProvider } from './components/theme-provider';
+import ScrollToTop from './components/ScrollToTop'; // Correction de l'import
 import './styles/theme.css';
 import Contact from './pages/contact';
 
+// Chargement dynamique des pages
 const HomePage = lazy(() => import('./pages/home').then(module => ({ default: module.HomePage })));
 const ServicesPage = lazy(() => import('./pages/services').then(module => ({ default: module.ServicesPage })));
 const BlogPage = lazy(() => import('./pages/blog').then(module => ({ default: module.BlogPage })));
@@ -16,6 +18,7 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
       <Router>
+        <ScrollToTop /> {/* Doit être en dehors de <Suspense> pour fonctionner correctement */}
         <div className="min-h-screen bg-background text-foreground antialiased transition-colors">
           <Navbar />
           <main>
