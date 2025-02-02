@@ -112,7 +112,7 @@ export const HomePage = () => {
       </Suspense>
 
       {/* Skills Section */}
-      <section id="skills" className="py-16 bg-background">
+      <section id="skills" className="py-6 bg-background">
         <Suspense fallback={<div className="h-96 flex items-center justify-center">Chargement des compétences...</div>}>
           <Skills />
         </Suspense>
@@ -147,7 +147,7 @@ export const HomePage = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4">
+            <h2 className="text-3xl font-bold mb-4">
               Mes <span className="gradient-text">Services</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -200,7 +200,7 @@ export const HomePage = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4">
+            <h2 className="text-3xl font-bold mb-4">
               Ce que disent mes <span className="gradient-text">Clients</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -249,52 +249,60 @@ export const HomePage = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-accent/5">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group relative"
-              >
-                <div className="absolute -inset-[1px] bg-gradient-to-br from-transparent via-primary/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 blur-sm transition-all duration-500" />
-                <div className="relative p-6 rounded-2xl bg-card border border-primary/10 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 text-center">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ 
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 15,
-                      delay: index * 0.1 
-                    }}
-                    viewport={{ once: true }}
-                    className="text-4xl font-bold mb-2"
-                  >
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary">
-                      <Counter n={parseInt(stat.value)} />+
-                    </span>
-                  </motion.div>
-                  <div className="text-muted-foreground group-hover:text-muted-foreground/80 transition-colors duration-300">
-                    {stat.label}
-                  </div>
+      <section className="relative py-24 overflow-hidden bg-background">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background to-background/50 pointer-events-none" />
+      
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.2,
+                ease: "easeOut"
+              }}
+              viewport={{ once: true, margin: "-50px" }}
+              className="relative group"
+            >
+              <div className="text-center space-y-4">
+                {/* Stat Value with hover effect */}
+                <div className="relative">
+                  <span className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80 transition-colors group-hover:from-primary/90 group-hover:to-primary">
+                    {stat.value}
+                  </span>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                
+                {/* Label with subtle animation */}
+                <motion.div 
+                  className="text-base text-muted-foreground/90 font-medium tracking-wide"
+                  initial={{ opacity: 0.8 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: index * 0.2 + 0.5 }}
+                >
+                  {stat.label}
+                </motion.div>
+                
+                {/* Decorative underline */}
+                <div className="h-px w-12 mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
+
 
       {/* Contact Section */}
-      <div id="contact" className="py-16 bg-accent/5">
+       {/* Contact Section */}
+       <div id="contact" className="py-20 bg-accent/5">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="max-w-xl">
-              <h2 className="text-4xl font-bold mb-6">Contactez-moi</h2>
+              <h2 className="text-3xl font-bold mb-6">Contactez-moi</h2>
               <p className="text-muted-foreground mb-8">
                 Vous avez un projet en tête ? Je serais ravi d'en discuter avec vous
                 et de voir comment je peux vous aider à le réaliser.

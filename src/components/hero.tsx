@@ -53,9 +53,9 @@ export function Hero() {
               className="flex-1 relative"
             >
               <div className="relative w-full md:w-[400px] h-[400px] md:h-[500px] mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-secondary/20 rounded-xl blur-2xl" />
+                <div className=" inset-0 bg-gradient-to-b from-primary/20 to-secondary/20 rounded-xl blur-2xl" />
                 <Image
-                  src={defaultImages.profile}
+                  src="/images/photo.jpg"
                   alt="Profile"
                   className="w-full h-full object-cover rounded-xl border-4 border-primary shadow-xl"
                   fallbackType="profile"
