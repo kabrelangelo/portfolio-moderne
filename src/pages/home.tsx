@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Image } from '@/components/image';
+import { useSpring, animated } from '@react-spring/web';
 
 // Lazy load components
 const Hero = lazy(() => import('../components/hero').then(module => ({ default: module.Hero })));
@@ -25,7 +26,23 @@ interface Service {
   title: string;
   description: string;
   icon: JSX.Element;
+  gradient: string;
 }
+
+interface CounterProps {
+  n: number;
+}
+
+const Counter = ({ n }: CounterProps) => {
+  const { number } = useSpring({
+    from: { number: 0 },
+    number: n,
+    delay: 200,
+    config: { mass: 1, tension: 20, friction: 10 }
+  });
+
+  return <animated.span>{number.to((n: number) => n.toFixed(0))}</animated.span>;
+};
 
 // Memoized static data
 const testimonials: Testimonial[] = [
@@ -68,18 +85,21 @@ const stats: Stat[] = [
 const services: Service[] = [
   {
     title: 'Développement Web',
-    description: 'Création de sites web modernes et responsives',
-    icon: <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9h-6m-5 0H5a2 2 0 00-2 2v6m18-3v-3" /></svg>,
+    description: 'Création de sites web modernes et responsives avec les dernières technologies',
+    icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9h-6m-5 0H5a2 2 0 00-2 2v6m18-3v-3" /></svg>,
+    gradient: "from-blue-500 to-cyan-500",
   },
   {
     title: 'Développement Mobile',
-    description: 'Création d\'applications mobiles pour Android et iOS',
-    icon: <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>,
+    description: 'Applications mobiles natives et cross-platform pour Android et iOS',
+    icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>,
+    gradient: "from-purple-500 to-pink-500",
   },
   {
     title: 'Conseil en Technologie',
-    description: 'Accompagnement dans la mise en place de solutions technologiques',
-    icon: <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>,
+    description: 'Expertise et accompagnement dans vos choix technologiques',
+    icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>,
+    gradient: "from-orange-500 to-red-500",
   },
 ];
 
@@ -92,33 +112,34 @@ export const HomePage = () => {
       </Suspense>
 
       {/* Skills Section */}
-      <section id="skills" className="py-10 bg-background">
+      <section id="skills" className="py-16 bg-background">
         <Suspense fallback={<div className="h-96 flex items-center justify-center">Chargement des compétences...</div>}>
           <Skills />
         </Suspense>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="pb-20 bg-accent/5">
+      <section id="projects" className="pb-16 bg-accent/5">
         <Suspense fallback={<div className="h-96 flex items-center justify-center">Chargement des projets...</div>}>
           <Projects />
         </Suspense>
-      <div className="flex justify-center items-center">
-        <Link to="/projects">
-  <motion.a
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    className="px-12 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
-  >
-    Voir tous les Projets
-  </motion.a>
-  </Link>
-</div>
-        </section>
+        <div className="flex justify-center items-center">
+          <Link to="/projects">
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-12 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+            >
+              Voir tous les Projets
+            </motion.a>
+          </Link>
+        </div>
+      </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+      <section id="services" className="py-16 bg-background relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white/5 bg-grid-pattern" />
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -126,7 +147,9 @@ export const HomePage = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4">Mes Services</h2>
+            <h2 className="text-4xl font-bold mb-4">
+              Mes <span className="gradient-text">Services</span>
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Des solutions sur mesure pour répondre à vos besoins numériques
             </p>
@@ -134,25 +157,42 @@ export const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div
+              <motion.div
                 key={service.title}
-                className="p-6 rounded-2xl bg-card hover:shadow-lg transition-all"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative"
               >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  {service.icon}
+                <div className="absolute -inset-[1px] bg-gradient-to-br from-transparent via-primary/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-all duration-500" />
+                <div className="relative p-8 rounded-3xl bg-gradient-to-br from-card/80 to-card/50 border border-primary/10 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500">
+                  <div className="mb-6 relative">
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
+                      <div className="text-white">
+                        {service.icon}
+                      </div>
+                    </div>
+                    <div className={`absolute -inset-4 bg-gradient-to-br ${service.gradient} rounded-3xl opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-500`} />
+                  </div>
+                  
+                  <h3 className={`text-xl font-semibold mb-3 bg-clip-text text-transparent bg-gradient-to-r ${service.gradient}`}>
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground group-hover:text-muted-foreground/80 transition-colors duration-300">
+                    {service.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-accent/5">
-        <div className="container mx-auto px-4">
+      <section id="testimonials" className="py-16 bg-background/50">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -160,45 +200,58 @@ export const HomePage = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4">Ce que disent mes clients</h2>
+            <h2 className="text-4xl font-bold mb-4">
+              Ce que disent mes <span className="gradient-text">Clients</span>
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Découvrez les retours d'expérience de mes clients satisfaits
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
-              <div
+              <motion.div
                 key={testimonial.name}
-                className="p-6 rounded-2xl bg-card relative"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative"
               >
-                <div className="absolute -top-4 left-6 w-8 h-8 bg-primary text-white flex items-center justify-center rounded-full">
-                  "
-                </div>
-                <p className="text-muted-foreground mb-4 mt-2">{testimonial.content}</p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden">
-                    <Image
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                      // fallbackType="avatar"
-                    />
+                <div className="absolute -inset-[1px] bg-gradient-to-br from-transparent via-primary/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 blur-sm transition-all duration-500" />
+                <div className="relative p-6 rounded-2xl bg-card border border-primary/10 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500">
+                  <div className="absolute -top-4 -right-4 w-10 h-10 bg-gradient-to-br from-primary to-primary/80 text-white flex items-center justify-center rounded-full shadow-lg transform -rotate-12 group-hover:rotate-0 transition-transform duration-300">
+                    "
                   </div>
-                  <div>
-                    <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                  <p className="text-muted-foreground mb-6 italic">
+                    {testimonial.content}
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                      <Image
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                        fallbackType="testimonial"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="py-16 bg-accent/5">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -206,10 +259,30 @@ export const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center"
+                className="group relative"
               >
-                <div className="text-4xl font-bold mb-2 gradient-text">{stat.value}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
+                <div className="absolute -inset-[1px] bg-gradient-to-br from-transparent via-primary/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 blur-sm transition-all duration-500" />
+                <div className="relative p-6 rounded-2xl bg-card border border-primary/10 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 text-center">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 15,
+                      delay: index * 0.1 
+                    }}
+                    viewport={{ once: true }}
+                    className="text-4xl font-bold mb-2"
+                  >
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary">
+                      <Counter n={parseInt(stat.value)} />+
+                    </span>
+                  </motion.div>
+                  <div className="text-muted-foreground group-hover:text-muted-foreground/80 transition-colors duration-300">
+                    {stat.label}
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -217,7 +290,7 @@ export const HomePage = () => {
       </section>
 
       {/* Contact Section */}
-      <div id="contact" className="py-20 bg-accent/5">
+      <div id="contact" className="py-16 bg-accent/5">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="max-w-xl">
@@ -267,9 +340,8 @@ export const HomePage = () => {
               <ContactForm />
             </Suspense>
           </div>
-          </div>
         </div>
       </div>
-    
+    </div>
   );
 };

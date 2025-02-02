@@ -16,7 +16,7 @@ const services = [
   },
   {
     title: "Développement Mobile",
-    description: "Applications mobiles natives et cross-platform",
+    description: "Création d'applications mobiles pour Android et iOS",
     image: "/images/mobile.webp",
     features: [
       "Applications iOS et Android",
@@ -38,7 +38,7 @@ const services = [
   },
   {
     title: "Conseil Technique",
-    description: "Accompagnement et expertise technique pour vos projets",
+    description: "Accompagnement dans la mise en place de solutions technologiques",
     image: "/images/technique.jpeg",
     features: [
       "Architecture logicielle",
@@ -74,7 +74,7 @@ export const ServicesPage = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-5xl md:text-7xl font-bold mb-6"
+              className="text-4xl md:text-6xl font-bold mb-6"
             >
               Mes <span className="gradient-text">Services</span>
             </motion.h1>
@@ -82,7 +82,7 @@ export const ServicesPage = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="text-xl text-muted-foreground max-w-2xl mx-auto"
+              className="text-xl text-muted-foreground max-w-2xl mx-auto px-4"
             >
               Des solutions sur mesure pour vos projets digitaux
             </motion.p>
@@ -101,11 +101,11 @@ export const ServicesPage = () => {
               className="group"
             >
               <div className="glass rounded-2xl overflow-hidden">
-                <div className="relative h-64">
+                <div className="relative h-48 md:h-64">
                   <Image
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-fit transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     fallbackType="service"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -144,20 +144,20 @@ export const ServicesPage = () => {
           viewport={{ once: true }}
           className="mt-20 text-center"
         >
-          <h2 className="text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Prêt à <span className="gradient-text">Collaborer</span> ?
           </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto px-4">
             Discutons de votre projet et voyons comment je peux vous aider à le réaliser.
           </p>
-          <Link to={"/contact"}>
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-lg font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
-          >
-            Commencer un Projet
-          </motion.a>
+          <Link to="/contact">
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-6 md:px-8 text-lg font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+            >
+              Commencer un Projet
+            </motion.a>
           </Link>
         </motion.div>
       </div>

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { z } from 'zod';
 import emailjs from '@emailjs/browser';
 import { emailConfig } from '../config/email';
@@ -25,13 +25,13 @@ export const ContactForm = () => {
   const [errors, setErrors] = useState<Partial<Record<keyof ContactForm, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    // Initialiser EmailJS
     emailjs.init(emailConfig.publicKey);
   }, []);
 
-  const validateField = (name: keyof ContactForm, value: string) => {
+  const validateField = useCallback((name: keyof ContactForm, value: string) => {
     try {
       contactSchema.shape[name].parse(value);
       setErrors(prev => {
@@ -47,15 +47,15 @@ export const ContactForm = () => {
         }));
       }
     }
-  };
+  }, []);
 
-  const handleChange = (
+  const handleChange = useCallback((
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     validateField(name as keyof ContactForm, value);
-  };
+  }, [validateField]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,15 +63,12 @@ export const ContactForm = () => {
     setSubmitStatus('idle');
 
     try {
-      // Valider tous les champs
       const validatedData = contactSchema.parse(formData);
       
-      // Vérifier que les identifiants EmailJS sont configurés
       if (!emailConfig.serviceId || !emailConfig.templateId || !emailConfig.publicKey) {
         throw new Error("La configuration EmailJS est incomplète");
       }
 
-      // Envoyer l'email via EmailJS
       const response = await emailjs.send(
         emailConfig.serviceId,
         emailConfig.templateId,
@@ -107,57 +104,73 @@ export const ContactForm = () => {
     }
   };
 
+  const formAnimation = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const buttonAnimation = {
+    rest: { scale: 1 },
+    hover: { scale: shouldReduceMotion ? 1 : 1.05 },
+    tap: { scale: shouldReduceMotion ? 1 : 0.95 }
+  };
+
   return (
     <motion.form
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial="hidden"
+      animate="visible"
+      variants={formAnimation}
       onSubmit={handleSubmit}
-      className="w-full bg-card p-8 rounded-2xl shadow-lg"
+      className="space-y-6 w-full max-w-2xl mx-auto"
+      style={{ 
+        willChange: "opacity, transform",
+        transform: "translateZ(0)"
+      }}
     >
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-2">
-              Nom
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className={`w-full px-4 py-2 rounded-lg border ${
-                errors.name ? 'border-red-500' : 'border-border'
-              } bg-background focus:outline-none focus:ring-2 focus:ring-primary transition-colors`}
-              placeholder="Votre nom"
-              disabled={isSubmitting}
-            />
-            {errors.name && (
-              <p className="mt-1 text-sm text-red-500">{errors.name}</p>
-            )}
-          </div>
+      <div className="space-y-4">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium mb-2">
+            Nom
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className={`w-full p-3 rounded-lg bg-card border ${
+              errors.name ? 'border-red-500' : 'border-input'
+            }`}
+          />
+          {errors.name && (
+            <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+          )}
+        </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={`w-full px-4 py-2 rounded-lg border ${
-                errors.email ? 'border-red-500' : 'border-border'
-              } bg-background focus:outline-none focus:ring-2 focus:ring-primary transition-colors`}
-              placeholder="votre@email.com"
-              disabled={isSubmitting}
-            />
-            {errors.email && (
-              <p className="mt-1 text-sm text-red-500">{errors.email}</p>
-            )}
-          </div>
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium mb-2">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className={`w-full p-3 rounded-lg bg-card border ${
+              errors.email ? 'border-red-500' : 'border-input'
+            }`}
+          />
+          {errors.email && (
+            <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+          )}
         </div>
 
         <div>
@@ -170,11 +183,9 @@ export const ContactForm = () => {
             name="subject"
             value={formData.subject}
             onChange={handleChange}
-            className={`w-full px-4 py-2 rounded-lg border ${
-              errors.subject ? 'border-red-500' : 'border-border'
-            } bg-background focus:outline-none focus:ring-2 focus:ring-primary transition-colors`}
-            placeholder="Sujet de votre message"
-            disabled={isSubmitting}
+            className={`w-full p-3 rounded-lg bg-card border ${
+              errors.subject ? 'border-red-500' : 'border-input'
+            }`}
           />
           {errors.subject && (
             <p className="mt-1 text-sm text-red-500">{errors.subject}</p>
@@ -191,63 +202,38 @@ export const ContactForm = () => {
             value={formData.message}
             onChange={handleChange}
             rows={5}
-            className={`w-full px-4 py-2 rounded-lg border ${
-              errors.message ? 'border-red-500' : 'border-border'
-            } bg-background focus:outline-none focus:ring-2 focus:ring-primary transition-colors`}
-            placeholder="Votre message..."
-            disabled={isSubmitting}
+            className={`w-full p-3 rounded-lg bg-card border ${
+              errors.message ? 'border-red-500' : 'border-input'
+            }`}
           />
           {errors.message && (
             <p className="mt-1 text-sm text-red-500">{errors.message}</p>
           )}
         </div>
+      </div>
 
-        <div className="flex items-center justify-between">
-          <motion.button
-            type="submit"
-            disabled={isSubmitting || Object.keys(errors).length > 0}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className={`px-8 py-3 rounded-lg font-medium text-white ${
-              isSubmitting || Object.keys(errors).length > 0
-                ? 'bg-primary/50 cursor-not-allowed'
-                : 'bg-primary hover:bg-primary/90'
-            } transition-colors`}
-          >
-            {isSubmitting ? (
-              <span className="flex items-center gap-2">
-                <svg
-                  className="animate-spin h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  />
-                </svg>
-                Envoi en cours...
-              </span>
-            ) : (
-              "Envoyer le message"
-            )}
-          </motion.button>
+      <div className="relative">
+        <motion.button
+          variants={buttonAnimation}
+          initial="rest"
+          whileHover="hover"
+          whileTap="tap"
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full bg-primary text-primary-foreground py-3 px-6 rounded-lg font-medium 
+                   hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          style={{ willChange: "transform" }}
+        >
+          {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
+        </motion.button>
 
+        <AnimatePresence mode="wait">
           {submitStatus === 'success' && (
             <motion.p
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-green-500"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="mt-4 text-green-500 text-center"
             >
               Message envoyé avec succès !
             </motion.p>
@@ -255,14 +241,15 @@ export const ContactForm = () => {
 
           {submitStatus === 'error' && (
             <motion.p
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-red-500"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="mt-4 text-red-500 text-center"
             >
-              Erreur lors de l'envoi du message.
+              Une erreur est survenue. Veuillez réessayer.
             </motion.p>
           )}
-        </div>
+        </AnimatePresence>
       </div>
     </motion.form>
   );

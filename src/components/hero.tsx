@@ -10,20 +10,6 @@ export function Hero() {
     visible: { opacity: 1, x: 0 }
   };
 
-  const pulseVariants = {
-    hidden: { scale: 1, opacity: 1 },
-    visible: { 
-      scale: shouldReduceMotion ? 1 : 1.05, 
-      opacity: 1,
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut"
-      }
-    }
-  };
-
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="relative min-h-screen flex items-center pt-20">
