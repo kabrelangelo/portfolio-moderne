@@ -1,24 +1,42 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Project } from '@/lib/types';
-import { fadeIn } from '@/lib/animations';
+import { useRef } from 'react';
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <motion.div variants={fadeIn}>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      style={{ 
+        willChange: "opacity, transform",
+        transform: "translateZ(0)"
+      }}
+    >
       <Card className="overflow-hidden group">
         <div className="relative aspect-video overflow-hidden">
           <img
             src={project.image}
             alt={project.title}
+            loading="lazy"
+            decoding="async"
             className="object-fill w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+            style={{ 
+              willChange: "transform",
+              transform: "translateZ(0)"
+            }}
           />
         </div>
         <div className="p-6">

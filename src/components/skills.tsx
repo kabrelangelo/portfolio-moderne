@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { useRef } from 'react';
 
 const skills = [
   { category: "Frontend", items: [
@@ -32,17 +33,44 @@ const skills = [
 ];
 
 export const Skills = () => {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
+
+  const containerAnimation = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.1
+      }
+    }
+  };
+
+  const itemAnimation = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
     <div className="w-full pt-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skills.map((category, index) => (
+        <motion.div
+          ref={containerRef}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={containerAnimation}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          {skills.map((category) => (
             <motion.div
               key={category.category}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
+              variants={itemAnimation}
               className="bg-card p-6 rounded-2xl shadow-md"
+              style={{ 
+                willChange: "opacity, transform",
+                transform: "translateZ(0)"
+              }}
             >
               <h3 className="text-xl font-bold mb-4 gradient-text">
                 {category.category}
@@ -58,11 +86,11 @@ export const Skills = () => {
                     </div>
                     <div className="h-2 bg-background rounded-full overflow-hidden">
                       <motion.div
-                        initial={{ width: "0%" }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        viewport={{ once: true }}
+                        initial={{ width: 0 }}
+                        animate={{ width: isInView ? `${skill.level}%` : 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                         className="h-full bg-gradient-to-r from-primary to-secondary"
+                        style={{ willChange: "width" }}
                       />
                     </div>
                   </div>
@@ -70,7 +98,7 @@ export const Skills = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,17 +1,39 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { defaultImages } from '../assets/images';
 import { Image } from '../components/image';
 
 export function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const fadeInVariants = {
+    hidden: { opacity: 0, x: 0 },
+    visible: { opacity: 1, x: 0 }
+  };
+
+  const pulseVariants = {
+    hidden: { scale: 1, opacity: 1 },
+    visible: { 
+      scale: shouldReduceMotion ? 1 : 1.05, 
+      opacity: 1,
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "easeInOut"
+      }
+    }
+  };
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="relative min-h-screen flex items-center pt-20">
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <motion.div
-              initial={{ x: -30, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
+              variants={fadeInVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.5 }}
               className="flex-1 text-center md:text-left"
             >
               <h1 className="text-5xl md:text-7xl font-bold mb-6">
@@ -38,9 +60,10 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              initial={{ x: 30, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
+              variants={fadeInVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="flex-1 relative"
             >
               <div className="relative w-full md:w-[400px] h-[400px] md:h-[500px] mx-auto">
@@ -52,9 +75,14 @@ export function Hero() {
                   fallbackType="profile"
                 />
                 <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.4, repeat: Infinity, repeatType: 'reverse' }}
+                  animate={{
+                    scale: shouldReduceMotion ? 1 : [1, 1.05, 1],
+                    transition: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
                   className="absolute -bottom-5 -right-5 w-20 h-20 md:w-28 md:h-28 bg-accent rounded-full flex items-center justify-center text-xl md:text-3xl font-bold shadow-md"
                 >
                   <span className="gradient-text">5+</span>
