@@ -69,12 +69,12 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-3xl lg:text-5xl font-bold tracking-tight mb-6">
+            <h1 className="text-3xl  lg:text-5xl font-bold tracking-tight mb-6">
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Contactez-nous
+                Contactez-moi
               </span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
               Un projet ? N'hésitez pas à nous contacter.
               Notre équipe est là pour vous répondre.
             </p>

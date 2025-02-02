@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ProjectCard } from '../components/projects/project-card';
+import {Link} from 'react-router-dom';
 
 const projects = [
   {
@@ -127,6 +128,29 @@ export const ProjectsPage = () => {
             />
           ))}
         </div>
+         {/* CTA Section */}
+         <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-20 text-center"
+        >
+          <h2 className="text-4xl font-bold mb-6">
+            Prêt à <span className="gradient-text">Collaborer</span> ?
+          </h2>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Discutons de votre projet et voyons comment je peux vous aider à le réaliser.
+          </p>
+          <Link to="/contact">
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-lg font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+          >
+            Commencer un Projet
+          </motion.a>
+          </Link>
+        </motion.div> 
       </div>
     </div>
   );
