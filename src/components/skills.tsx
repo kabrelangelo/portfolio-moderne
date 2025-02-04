@@ -42,14 +42,21 @@ export const Skills = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: shouldReduceMotion ? 0 : 0.1
+        staggerChildren: shouldReduceMotion ? 0 : 0.15,
+        duration: 0.5
       }
     }
   };
 
   const itemAnimation = {
     hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
   };
 
   return (
@@ -88,7 +95,11 @@ export const Skills = () => {
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: isInView ? `${skill.level}%` : 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        transition={{ 
+                          duration: shouldReduceMotion ? 1 : 1.2, 
+                          ease: "easeOut",
+                          delay: shouldReduceMotion ? 0 : 0.2
+                        }}
                         className="h-full bg-gradient-to-r from-primary to-secondary"
                         style={{ willChange: "width" }}
                       />

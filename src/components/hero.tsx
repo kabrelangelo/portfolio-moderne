@@ -25,7 +25,7 @@ export function Hero() {
                 transform: "translateZ(0)"
               }}
             >
-              <h1 className="text-3xl sm:text-4xl md:text-7xl font-bold mb-6 whitespace-normal break-words">
+              <h1 className="text-5xl md:text-7xl font-bold mt-32 md:mt-0 mb-6 whitespace-normal break-words">
                 <span className="inline-block">Développeur</span>{' '}
                 <span className="gradient-text inline-block">Full-Stack</span>
               </h1>
@@ -53,12 +53,8 @@ export function Hero() {
               variants={fadeInVariants}
               initial="hidden"
               animate="visible"
-              transition={{ duration: 0.3, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="flex-1 relative"
-              style={{ 
-                willChange: "opacity, transform",
-                transform: "translateZ(0)"
-              }}
             >
               <div className="relative w-full md:w-[400px] h-[400px] md:h-[500px] mx-auto">
                 <div className=" inset-0 bg-gradient-to-b from-primary/20 to-secondary/20 rounded-xl blur-2xl" />
@@ -70,16 +66,12 @@ export function Hero() {
                 />
                 <motion.div
                   animate={{
-                    scale: shouldReduceMotion ? 1 : [1, 1.02, 1],
+                    scale: shouldReduceMotion ? 1 : [1, 1.05, 1],
                     transition: {
-                      duration: shouldReduceMotion ? 0 : 1.5,
+                      duration: 2,
                       repeat: Infinity,
                       ease: "easeInOut"
                     }
-                  }}
-                  style={{ 
-                    willChange: "transform",
-                    transform: "translateZ(0)"
                   }}
                   className="absolute -bottom-5 -right-5 w-20 h-20 md:w-28 md:h-28 bg-accent rounded-full flex items-center justify-center text-xl md:text-3xl font-bold shadow-md"
                 >

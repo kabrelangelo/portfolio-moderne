@@ -90,7 +90,7 @@ export const ProjectsPage = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-5xl md:text-7xl font-bold mb-6"
+              className="text-4xl md:text-7xl font-bold mb-6"
             >
               Mes <span className="gradient-text">Projets</span>
             </motion.h1>
@@ -98,7 +98,7 @@ export const ProjectsPage = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="text-xl mb-16 text-muted-foreground max-w-2xl mx-auto"
+              className="text-lg mb-16 text-muted-foreground max-w-2xl mx-auto"
             >
                Découvrez une sélection de mes projets les plus récents et significatifs,
                démontrant mes compétences en développement web et mobile.

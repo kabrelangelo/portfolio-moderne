@@ -82,7 +82,7 @@ export const ServicesPage = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="text-xl text-muted-foreground max-w-2xl mx-auto px-4"
+              className="text-lg text-muted-foreground max-w-2xl mx-auto px-4"
             >
               Des solutions sur mesure pour vos projets digitaux
             </motion.p>

@@ -70,12 +70,12 @@ export const TestimonialsPage = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background" />
         </motion.div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
+          <div className="text-center mx-6">
             <motion.h1
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-5xl md:text-7xl font-bold mb-6"
+              className="text-4xl md:text-7xl font-bold mb-6"
             >
               Ils me font <span className="gradient-text">Confiance</span>
             </motion.h1>
@@ -83,7 +83,7 @@ export const TestimonialsPage = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="text-xl text-muted-foreground max-w-2xl mx-auto"
+              className="text-lg text-muted-foreground max-w-2xl mx-auto"
             >
               Découvrez les retours d'expérience de mes clients sur nos collaborations
             </motion.p>
