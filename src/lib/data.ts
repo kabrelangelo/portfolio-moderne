@@ -14,7 +14,7 @@ export const projects: Project[] = [
     id: 2,
     title: 'Application Mobile de Gestion Scolaire',
     description: 'Application mobile de gestion scolaire avec Flutter et CodeIgniter pour l\' entreprise SIGERIS SARL',
-    image: '/images/sigeris0.png',
+    image: '/images/sigeris.PNG',
     technologies: ['Flutter', 'CodeIgniter', 'MySQL', 'PHP'],
     demo: 'https://play.google.com/store/apps/details?id=cm.sigeris.sigerishs&hl=ln&pli=1',
     github: '',
