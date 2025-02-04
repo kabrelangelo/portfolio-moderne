@@ -1,5 +1,4 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { defaultImages } from '../assets/images';
 import { Image } from '../components/image';
 
 export function Hero() {
