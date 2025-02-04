@@ -2,7 +2,6 @@ import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Image } from '@/components/image';
-import { useSpring, animated } from '@react-spring/web';
 
 // Lazy load components
 const Hero = lazy(() => import('../components/hero').then(module => ({ default: module.Hero })));
