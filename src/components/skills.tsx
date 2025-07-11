@@ -5,20 +5,20 @@ const skills = [
   { category: "Frontend", items: [
       { name: "React", level: 90 },
       { name: "Next.js", level: 85 },
-      { name: "Tailwind CSS", level: 90 },
-      { name: "TypeScript", level: 75 },
+      { name: "Flutter", level: 90 },
+      { name: "Tailwind CSS", level: 75 },
     ]
   },
   { category: "Backend", items: [
       { name: "Node.js", level: 85 },
-      { name: "Express", level: 80 },
-      { name: "MongoDB", level: 75 },
-      { name: "PostgreSQL", level: 70 },
+      { name: "MongoDB", level: 80 },
+      { name: "PostgreSQL", level: 75 },
+      { name: "Supabase", level: 70 },
     ]
   },
   { category: "Mobile", items: [
       { name: "Flutter", level: 80 },
-      { name: "Firebase", level: 65 },
+      { name: "Supabase", level: 85 },
       { name: "Android", level: 80 },
       { name: "IOS", level: 75 },
     ]

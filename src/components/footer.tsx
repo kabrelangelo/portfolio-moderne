@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/kabrelangelo' },
-  { icon: Linkedin, href: 'https://linkedin.com' },
-  { icon: Twitter, href: 'https://twitter.com' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/ange-kabrel-kenne-298b36240/' },
+  { icon: Twitter, href: 'https://twitter.com'},
 ];
 
 export function Footer() {
@@ -13,7 +13,7 @@ export function Footer() {
       <div className="container px-4 mx-auto">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Tous droits réservés
+            © {new Date().getFullYear()} Tous droits réservés.
           </p>
           
           <div className="flex items-center space-x-4">
